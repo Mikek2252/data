@@ -5,10 +5,10 @@
 import { assert } from '@ember/debug';
 import EmberObject from '@ember/object';
 
-import { LOG_PAYLOADS, LOG_REQUESTS } from '@ember-data/debugging';
-import { DEBUG, TESTING } from '@ember-data/env';
 import type RequestManager from '@ember-data/request';
 import type { Future } from '@ember-data/request/-private/types';
+import { LOG_PAYLOADS, LOG_REQUESTS } from '@warp-drive/build-config/debugging';
+import { DEBUG, TESTING } from '@warp-drive/build-config/env';
 import type { Graph } from '@warp-drive/core-types/graph';
 import type {
   StableDocumentIdentifier,
@@ -416,7 +416,7 @@ class Store extends EmberObject {
    * @return {Future}
    * @public
    */
-  request<T>(requestConfig: StoreRequestInput): Future<T> {
+  request<RT, T = unknown>(requestConfig: StoreRequestInput<T, RT>): Future<RT> {
     // we lazily set the cache handler when we issue the first request
     // because constructor doesn't allow for this to run after
     // the user has had the chance to set the prop.
@@ -458,7 +458,7 @@ class Store extends EmberObject {
       );
     }
 
-    const future = this.requestManager.request<T>(Object.assign(requestConfig, opts));
+    const future = this.requestManager.request<RT>(Object.assign(requestConfig, opts));
 
     future.onFinalize(() => {
       if (LOG_REQUESTS) {

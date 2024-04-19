@@ -5,8 +5,8 @@ import { assert, warn } from '@ember/debug';
 
 import { getOwnConfig, macroCondition } from '@embroider/macros';
 
-import { LOG_IDENTIFIERS } from '@ember-data/debugging';
-import { DEBUG } from '@ember-data/env';
+import { LOG_IDENTIFIERS } from '@warp-drive/build-config/debugging';
+import { DEBUG } from '@warp-drive/build-config/env';
 import {
   CACHE_OWNER,
   DEBUG_CLIENT_ORIGINATED,
@@ -25,6 +25,8 @@ import type { ExistingResourceObject, ResourceIdentifierObject } from '@warp-dri
 import type {
   ForgetMethod,
   GenerationMethod,
+  KeyInfo,
+  KeyInfoMethod,
   ResetMethod,
   ResourceData,
   UpdateMethod,
@@ -76,18 +78,13 @@ type TypeMap = { [key: string]: KeyOptions };
 // type IdentifierTypeLookup = { all: Set<StableRecordIdentifier>; id: Map<string, StableRecordIdentifier> };
 // type IdentifiersByType = Map<string, IdentifierTypeLookup>;
 type IdentifierMap = Map<string, StableRecordIdentifier>;
-type KeyInfo = {
-  id: string | null;
-  type: string;
-};
+
 type StableCache = {
   resources: IdentifierMap;
   documents: Map<string, StableDocumentIdentifier>;
   resourcesByType: TypeMap;
   polymorphicLidBackMap: Map<string, string[]>;
 };
-
-export type KeyInfoMethod = (resource: unknown, known: StableRecordIdentifier | null) => KeyInfo;
 
 export type MergeMethod = (
   targetIdentifier: StableRecordIdentifier,

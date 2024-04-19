@@ -1,24 +1,24 @@
 {
   "name": "@warp-drive/internal-config",
   "private": true,
-  "version": "5.4.0-alpha.53",
+  "version": "5.4.0-alpha.57",
   "dependencies": {
     "@babel/core": "^7.24.4",
     "@babel/eslint-parser": "^7.24.1",
     "@babel/plugin-proposal-decorators": "^7.24.1",
-    "@typescript-eslint/eslint-plugin": "^7.5.0",
-    "@typescript-eslint/parser": "^7.5.0",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-mocha": "^10.4.1",
+    "eslint-plugin-mocha": "^10.4.2",
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-qunit": "^8.1.1",
     "eslint-plugin-simple-import-sort": "^12.0.0",
-    "typescript": "^5.4.4"
+    "typescript": "^5.4.5"
   },
   "engines": {
-    "node": ">= 18.20.1"
+    "node": ">= 18.20.2"
   },
   "volta": {
     "extends": "../package.json"

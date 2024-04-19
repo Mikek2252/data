@@ -1,7 +1,7 @@
 {
   "name": "@warp-drive/ember",
   "description": "Data bindings and utilities for Ember applications using WarpDrive",
-  "version": "0.0.0-alpha.15",
+  "version": "0.0.0-alpha.19",
   "license": "MIT",
   "author": "Chris Thoburn <runspired@users.noreply.github.com>",
   "repository": {
@@ -45,14 +45,14 @@
   "peerDependencies": {
     "@ember-data/store": "^4.12.7 || > 5.3.3",
     "@ember-data/request": "^4.12.7 || > 5.3.3",
-    "@warp-drive/core-types": "workspace:0.0.0-alpha.39",
+    "@warp-drive/core-types": "workspace:0.0.0-alpha.43",
     "ember-provide-consume-context": "^0.3.1",
     "@ember-data/tracking": "^4.12.7 ||| > 5.3.3",
     "@ember/string": "^3.1.1"
   },
   "dependencies": {
     "@ember/test-waiters": "^3.1.0",
-    "@embroider/macros": "^1.15.0",
+    "@embroider/macros": "^1.15.1",
     "@embroider/addon-shim": "^1.8.7"
   },
   "dependenciesMeta": {
@@ -85,10 +85,10 @@
     "@babel/preset-env": "^7.24.4",
     "@babel/preset-typescript": "^7.24.1",
     "@babel/runtime": "^7.24.4",
-    "@embroider/addon-dev": "^4.2.1",
+    "@embroider/addon-dev": "^4.3.1",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
-    "@glimmer/validator": "^0.91.1",
+    "@glimmer/validator": "^0.92.0",
     "@glint/core": "^1.4.0",
     "@glint/environment-ember-loose": "^1.4.0",
     "@glint/environment-ember-template-imports": "^1.4.0",
@@ -96,22 +96,22 @@
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "decorator-transforms": "1.1.0",
-    "@ember-data/request": "workspace:5.4.0-alpha.53",
-    "@ember-data/store": "workspace:5.4.0-alpha.53",
-    "@ember-data/tracking": "workspace:5.4.0-alpha.53",
+    "@ember-data/request": "workspace:5.4.0-alpha.57",
+    "@ember-data/store": "workspace:5.4.0-alpha.57",
+    "@ember-data/tracking": "workspace:5.4.0-alpha.57",
     "@ember/string": "^3.1.1",
-    "@warp-drive/core-types": "workspace:0.0.0-alpha.39",
-    "@warp-drive/internal-config": "workspace:5.4.0-alpha.53",
+    "@warp-drive/core-types": "workspace:0.0.0-alpha.43",
+    "@warp-drive/internal-config": "workspace:5.4.0-alpha.57",
     "babel-plugin-ember-template-compilation": "^2.2.1",
     "ember-template-imports": "^4.1.0",
     "ember-source": "~5.7.0",
     "pnpm-sync-dependencies-meta-injected": "0.0.10",
-    "rollup": "^4.14.0",
-    "typescript": "^5.4.4",
+    "rollup": "^4.14.3",
+    "typescript": "^5.4.5",
     "walk-sync": "^3.0.0"
   },
   "engines": {
-    "node": ">= 18.20.1"
+    "node": ">= 18.20.2"
   },
   "volta": {
     "extends": "../../package.json"
