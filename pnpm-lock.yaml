@@ -832,8 +832,8 @@ importers:
         specifier: ^2.2.1
         version: 2.2.1
       decorator-transforms:
-        specifier: 1.1.0
-        version: 1.1.0(@babel/core@7.24.4)
+        specifier: 1.2.1
+        version: 1.2.1(@babel/core@7.24.4)
       ember-source:
         specifier: ~5.7.0
         version: 5.7.0(@babel/core@7.24.4)(@glimmer/component@1.1.2)(@glint/template@1.4.0)
@@ -11044,11 +11044,11 @@ packages:
       mimic-response: 1.0.1
     dev: true
 
-  /decorator-transforms@1.1.0(@babel/core@7.24.4):
-    resolution: {integrity: sha512-n3WCgc3PB2t9mLV4SJd87IjTbKeFUGw2sU5eEBYczSmcvj3guX4eMW4XOowlQqGk7I/da6+bwv1ydw1ZtNqWaw==}
+  /decorator-transforms@1.2.1(@babel/core@7.24.4):
+    resolution: {integrity: sha512-UUtmyfdlHvYoX3VSG1w5rbvBQ2r5TX1JsE4hmKU9snleFymadA3VACjl6SRfi9YgBCSjBbfQvR1bs9PRW9yBKw==}
     dependencies:
       '@babel/plugin-syntax-decorators': 7.24.1(@babel/core@7.24.4)
-      babel-import-util: 2.0.1
+      babel-import-util: 2.0.2
     transitivePeerDependencies:
       - '@babel/core'
     dev: true
