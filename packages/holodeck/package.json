@@ -21,9 +21,9 @@
     "extends": "../../package.json"
   },
   "dependencies": {
-    "@hono/node-server": "^1.10.0",
+    "@hono/node-server": "^1.11.0",
     "chalk": "^5.3.0",
-    "hono": "^4.2.4",
+    "hono": "^4.2.5",
     "pm2": "^5.3.1"
   },
   "files": [
@@ -39,12 +39,9 @@
     "holodeck": "./bin/holodeck.js"
   },
   "scripts": {
-    "build:types": "tsc --build --force",
-    "build:client": "rollup --config",
-    "_build": "bun run build:client && bun run build:types",
+    "_build": "rollup --config",
     "start": "rollup --config --watch",
-    "prepack": "bun run _build",
-    "_syncPnpm": "bun run sync-dependencies-meta-injected"
+    "prepack": "bun run _build"
   },
   "peerDependencies": {
     "@ember-data/request": "workspace:5.4.0-alpha.57",
@@ -65,8 +62,7 @@
     "@warp-drive/internal-config": "workspace:5.4.0-alpha.57",
     "rollup": "^4.14.3",
     "typescript": "^5.4.5",
-    "walk-sync": "^3.0.0",
-    "pnpm-sync-dependencies-meta-injected": "0.0.10"
+    "walk-sync": "^3.0.0"
   },
   "type": "module",
   "exports": {

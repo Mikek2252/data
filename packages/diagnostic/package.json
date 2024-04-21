@@ -63,14 +63,11 @@
     }
   },
   "scripts": {
-    "lint": "eslint . --quiet --cache --cache-strategy=content --ext .js,.ts,.mjs,.cjs --report-unused-disable-directives",
+    "lint": "eslint . --quiet --cache --cache-strategy=content --report-unused-disable-directives",
     "build:tests": "rm -rf dist-test && cp -R test dist-test && mkdir -p dist-test/@warp-drive && cp -R dist dist-test/@warp-drive/diagnostic",
-    "build:types": "tsc --build --force",
-    "build:runtime": "rollup --config",
-    "_build": "bun run build:runtime && bun run build:types",
+    "_build": "rollup --config",
     "start": "rollup --config --watch",
-    "prepack": "bun run _build",
-    "_syncPnpm": "bun run sync-dependencies-meta-injected"
+    "prepack": "bun run _build"
   },
   "peerDependencies": {
     "@ember/test-helpers": ">= 3.3.0",
@@ -109,7 +106,6 @@
     "bun-types": "^1.1.3",
     "@ember/test-helpers": "^3.3.0",
     "ember-source": "~5.7.0",
-    "pnpm-sync-dependencies-meta-injected": "0.0.10",
     "@glimmer/component": "^1.1.2",
     "ember-cli-test-loader": "^3.1.0",
     "rollup": "^4.14.3",

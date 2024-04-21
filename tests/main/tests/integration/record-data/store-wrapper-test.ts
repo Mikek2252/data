@@ -8,8 +8,8 @@ import { setupTest } from 'ember-qunit';
 import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 import { recordIdentifierFor } from '@ember-data/store';
 import type { CacheCapabilitiesManager } from '@ember-data/store/-types/q/cache-store-wrapper';
-import publicProps from '@ember-data/unpublished-test-infra/test-support/public-props';
 import type { StableRecordIdentifier } from '@warp-drive/core-types';
+import type { RelationshipsSchema } from '@warp-drive/core-types/schema';
 import type { ExistingResourceObject } from '@warp-drive/core-types/spec/raw';
 
 class Person extends Model {
@@ -211,11 +211,10 @@ module('integration/store-wrapper - RecordData StoreWrapper tests', function (ho
       },
     };
     const schema = storeWrapper.getSchemaDefinitionService().relationshipsDefinitionFor({ type: 'house' });
-    const result = publicProps(['key', 'kind', 'name', 'type', 'options'], schema) as Record<string, unknown>;
 
     // Retrieve only public values from the result
     // This should go away once we put private things in symbols/weakmaps
-    assert.deepEqual(houseRelationships, result, 'can lookup relationship definitions');
+    assert.deepEqual(houseRelationships as RelationshipsSchema, schema, 'can lookup relationship definitions');
   });
 
   test('setRecordId', function (assert) {

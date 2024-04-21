@@ -12,7 +12,7 @@
   "author": "",
   "scripts": {
     "test:docs": "qunit ./index.js",
-    "lint": "eslint . --quiet --cache --cache-strategy=content --ext .js,.ts,.mjs,.cjs",
+    "lint": "eslint . --quiet --cache --cache-strategy=content --report-unused-disable-directives",
     "_syncPnpm": "bun run sync-dependencies-meta-injected"
   },
   "devDependencies": {

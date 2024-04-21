@@ -3,11 +3,10 @@
 */
 import { assert } from '@ember/debug';
 
-import { importSync } from '@embroider/macros';
+import { dependencySatisfies, importSync } from '@embroider/macros';
 
 import type { CollectionEdge } from '@ember-data/graph/-private/edges/collection';
 import type { ResourceEdge } from '@ember-data/graph/-private/edges/resource';
-import { HAS_JSON_API_PACKAGE } from '@ember-data/packages';
 import type Store from '@ember-data/store';
 import type { FindRecordOptions } from '@ember-data/store/-types/q/store';
 import { DEBUG } from '@warp-drive/build-config/env';
@@ -316,14 +315,10 @@ export default class Snapshot<R = unknown> {
       relationshipMeta && relationshipMeta.kind === 'belongsTo'
     );
 
-    // TODO @runspired it seems this code branch would not work with CUSTOM_MODEL_CLASSes
-    // this check is not a regression in behavior because relationships don't currently
-    // function without access to intimate API contracts between RecordData and Model.
-    // This is a requirement we should fix as soon as the relationship layer does not require
-    // this intimate API usage.
-    if (!HAS_JSON_API_PACKAGE) {
-      assert(`snapshot.belongsTo only supported when using the package @ember-data/json-api`);
-    }
+    assert(
+      `snapshot.belongsTo only supported when using the package @ember-data/graph`,
+      dependencySatisfies('@ember-data/graph', '*')
+    );
 
     const graphFor = (importSync('@ember-data/graph/-private') as typeof import('@ember-data/graph/-private')).graphFor;
     const { identifier } = this;
@@ -432,9 +427,10 @@ export default class Snapshot<R = unknown> {
     // function without access to intimate API contracts between RecordData and Model.
     // This is a requirement we should fix as soon as the relationship layer does not require
     // this intimate API usage.
-    if (!HAS_JSON_API_PACKAGE) {
-      assert(`snapshot.hasMany only supported when using the package @ember-data/json-api`);
-    }
+    assert(
+      `snapshot.hasMany only supported when using the package @ember-data/graph`,
+      dependencySatisfies('@ember-data/graph', '*')
+    );
 
     const graphFor = (importSync('@ember-data/graph/-private') as typeof import('@ember-data/graph/-private')).graphFor;
     const { identifier } = this;

@@ -15,7 +15,7 @@
   "scripts": {
     "build:tests": "IS_TESTING=true EMBER_CLI_TEST_COMMAND=true ember build --output-path=dist-test --suppress-sizes",
     "build:production": "pnpm build:tests -e production",
-    "lint": "eslint . --quiet --cache --cache-strategy=content --ext .js,.ts,.mjs,.cjs --report-unused-disable-directives",
+    "lint": "eslint . --quiet --cache --cache-strategy=content --report-unused-disable-directives",
     "check:types": "tsc --noEmit",
     "examine": "export EXAM_PARALLEL_COUNT=$(./bin/calculate-test-jobs); ember exam --test-port=0 --path=dist-test --parallel=$EXAM_PARALLEL_COUNT --load-balance",
     "test:try-one": "ember try:one",
@@ -61,9 +61,6 @@
     "@ember-data/tracking": {
       "injected": true
     },
-    "@ember-data/private-build-infra": {
-      "injected": true
-    },
     "@ember-data/unpublished-test-infra": {
       "injected": true
     },
@@ -96,7 +93,6 @@
     "@ember-data/json-api": "workspace:5.4.0-alpha.57",
     "@ember-data/legacy-compat": "workspace:5.4.0-alpha.57",
     "@ember-data/model": "workspace:5.4.0-alpha.57",
-    "@ember-data/private-build-infra": "workspace:5.4.0-alpha.57",
     "@ember-data/request": "workspace:5.4.0-alpha.57",
     "@ember-data/request-utils": "workspace:5.4.0-alpha.57",
     "@ember-data/serializer": "workspace:5.4.0-alpha.57",

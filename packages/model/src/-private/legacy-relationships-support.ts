@@ -1,13 +1,12 @@
 import { assert } from '@ember/debug';
 
-import { importSync } from '@embroider/macros';
+import { dependencySatisfies, importSync, macroCondition } from '@embroider/macros';
 
 import type { UpgradedMeta } from '@ember-data/graph/-private/-edge-definition';
 import type { CollectionEdge } from '@ember-data/graph/-private/edges/collection';
 import type { ResourceEdge } from '@ember-data/graph/-private/edges/resource';
 import type { Graph, GraphEdge } from '@ember-data/graph/-private/graph';
 import { upgradeStore } from '@ember-data/legacy-compat/-private';
-import { HAS_JSON_API_PACKAGE } from '@ember-data/packages';
 import type Store from '@ember-data/store';
 import {
   fastPush,
@@ -77,7 +76,7 @@ export class LegacySupport {
     this.identifier = recordIdentifierFor(record);
     this.cache = peekCache(record);
 
-    if (HAS_JSON_API_PACKAGE) {
+    if (macroCondition(dependencySatisfies('@ember-data/graph', '*'))) {
       const graphFor = (importSync('@ember-data/graph/-private') as typeof import('@ember-data/graph/-private'))
         .graphFor;
 
@@ -236,7 +235,7 @@ export class LegacySupport {
   }
 
   getManyArray<T>(key: string, definition?: UpgradedMeta): RelatedCollection<T> {
-    if (HAS_JSON_API_PACKAGE) {
+    if (macroCondition(dependencySatisfies('@ember-data/graph', '*'))) {
       let manyArray: RelatedCollection<T> | undefined = this._manyArrayCache[key] as RelatedCollection<T> | undefined;
       if (!definition) {
         definition = this.graph.get(this.identifier, key).definition;
@@ -275,7 +274,7 @@ export class LegacySupport {
     manyArray: RelatedCollection,
     options?: BaseFinderOptions
   ): Promise<RelatedCollection> {
-    if (HAS_JSON_API_PACKAGE) {
+    if (macroCondition(dependencySatisfies('@ember-data/graph', '*'))) {
       let loadingPromise = this._relationshipPromisesCache[key] as Promise<RelatedCollection> | undefined;
       if (loadingPromise) {
         return loadingPromise;
@@ -300,7 +299,7 @@ export class LegacySupport {
   }
 
   reloadHasMany<T>(key: string, options?: BaseFinderOptions): Promise<ManyArray<T>> | PromiseManyArray<T> {
-    if (HAS_JSON_API_PACKAGE) {
+    if (macroCondition(dependencySatisfies('@ember-data/graph', '*'))) {
       const loadingPromise = this._relationshipPromisesCache[key];
       if (loadingPromise) {
         return loadingPromise as Promise<ManyArray<T>>;
@@ -323,7 +322,7 @@ export class LegacySupport {
   }
 
   getHasMany(key: string, options?: BaseFinderOptions): PromiseManyArray | RelatedCollection {
-    if (HAS_JSON_API_PACKAGE) {
+    if (macroCondition(dependencySatisfies('@ember-data/graph', '*'))) {
       const relationship = this.graph.get(this.identifier, key) as CollectionEdge;
       const { definition, state } = relationship;
       const manyArray = this.getManyArray(key, definition);
@@ -395,7 +394,7 @@ export class LegacySupport {
     let reference = this.references[name];
 
     if (!reference) {
-      if (!HAS_JSON_API_PACKAGE) {
+      if (macroCondition(!dependencySatisfies('@ember-data/graph', '*'))) {
         // TODO @runspired while this feels odd, it is not a regression in capability because we do
         // not today support references pulling from RecordDatas other than our own
         // because of the intimate API access involved. This is something we will need to redesign.
@@ -435,7 +434,7 @@ export class LegacySupport {
     relationship: CollectionEdge,
     options: BaseFinderOptions = {}
   ): Promise<void | unknown[]> | void {
-    if (HAS_JSON_API_PACKAGE) {
+    if (macroCondition(dependencySatisfies('@ember-data/graph', '*'))) {
       if (!resource) {
         return;
       }

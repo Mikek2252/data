@@ -1,8 +1,7 @@
 import { assert, warn } from '@ember/debug';
 
-import { importSync } from '@embroider/macros';
+import { dependencySatisfies, importSync, macroCondition } from '@embroider/macros';
 
-import { HAS_GRAPH_PACKAGE } from '@ember-data/packages';
 import { createDeferred } from '@ember-data/request';
 import type { Deferred } from '@ember-data/request/-private/types';
 import type Store from '@ember-data/store';
@@ -169,7 +168,7 @@ export default class FetchManager {
         const cache = store.cache;
         if (!cache || cache.isEmpty(identifier) || isInitialLoad) {
           let isReleasable = true;
-          if (HAS_GRAPH_PACKAGE) {
+          if (macroCondition(dependencySatisfies('@ember-data/graph', '*'))) {
             if (!cache) {
               const graphFor = (importSync('@ember-data/graph/-private') as typeof import('@ember-data/graph/-private'))
                 .graphFor;
